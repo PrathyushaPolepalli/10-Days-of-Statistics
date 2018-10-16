@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+       // DecimalFormat df = new DecimalFormat("#.#");
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        float sum =0;
+        float[] w = new float[n];
+        float[] x = new float[n];
+        for(int i =0; i<n;i++){
+            x[i] = scan.nextFloat();
+        }
+        for(int i=0;i<n;i++){
+            w[i] = scan.nextFloat();
+            sum = sum+w[i];
+        }
+        float sum1=0;
+        for(int i=0;i<n;i++){
+            sum1 = sum1 + w[i]*x[i];
+        }
+        System.out.printf("%.1f %n", sum1/sum);
+        //System.out.println(sum1/sum);
+    }
+}
