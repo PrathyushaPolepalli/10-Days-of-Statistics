@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int q1,q2,q3;
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = scan.nextInt();
+        }
+        Arrays.sort(arr);
+        if(n%2==0){
+            q2 = (arr[n/2-1] + arr[n/2])/2;
+            if((n/2)%2==0){//over
+                q1 = (arr[n/4] + arr[n/4-1])/2;
+                q3 = (arr[n/4 + n/2] + arr[n/4 + n/2 -1])/2;
+            }
+            else{//over
+                q1 = arr[n/2-n/4-1];
+                q3 = arr[n/2+n/4];
+            }
+        }
+        else{
+            q2 = arr[n/2];
+            if((n/2)%2==0){//over
+                q1 = (arr[n/4] + arr[n/4-1])/2;
+                q3 = (arr[n/4 + n/2] + arr[n/4 + n/2 +1])/2;
+            }
+            else{//over
+                q1 = arr[n/2-n/4-1];
+                q3 = arr[n/2+n/4+1];
+            }
+        }
+        System.out.println(q1);
+        System.out.println(q2);
+        System.out.println(q3);
+    }
+}
