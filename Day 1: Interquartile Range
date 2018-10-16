@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int[] x = new int[n];
+        int[] f = new int[n];
+        int sum = 0;
+        for(int i=0;i<n;i++)
+            x[i] = scan.nextInt();
+        for(int i=0;i<n;i++){
+            f[i] = scan.nextInt();
+            sum = sum + f[i];
+        }
+        int[] s = new int[sum];
+        boolean isSorted = false;
+        int lastIndex = n-1;
+        while(!isSorted){
+            isSorted = true;
+            for(int i=0;i<lastIndex;i++){
+                if(x[i]>x[i+1]){
+                    int temp;
+                    temp = x[i];
+                    x[i] = x[i+1];
+                    x[i+1] = temp;
+                    int temp1;
+                    temp1 = f[i];
+                    f[i] = f[i+1];
+                    f[i+1] = temp1;
+                    isSorted = false;
+                }
+            }
+        }
+        int j = 0;
+        float q1,q2,q3;
+        for(int i=0;i<n;i++){
+            while(f[i]>0 && j<sum){
+                s[j] = x[i];
+                j++;
+                f[i]--;
+            }
+        }
+        if(sum%2==0){
+            q2 = (s[sum/2-1] + s[sum/2])/2;
+            if((sum/2)%2==0){//over
+                q1 = (s[sum/4] + s[sum/4-1])/2;
+                q3 = (s[sum/4 + sum/2] + s[sum/4 + sum/2 -1])/2;
+            }
+            else{//over
+                q1 = s[sum/2-sum/4-1];
+                q3 = s[sum/2+sum/4];
+            }
+        }
+        else{
+            q2 = s[sum/2];
+            if((sum/2)%2==0){//over
+                q1 = (s[sum/4] + s[sum/4-1])/2;
+                q3 = (s[sum/4 + sum/2] + s[sum/4 + sum/2 +1])/2;
+            }
+            else{//over
+                q1 = s[sum/2-sum/4-1];
+                q3 = s[sum/2+sum/4+1];
+            }
+        }
+        System.out.printf("%.1f",q3-q1);
+    }
+}
