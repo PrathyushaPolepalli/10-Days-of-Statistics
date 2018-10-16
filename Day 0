@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        float[] arr = new float[n];
+        int[] count = new int[n];
+        float sum = 0;
+        for(int i=0;i<n;i++){
+            count[i] =0;
+            arr[i] = scan.nextInt();
+            sum = sum + arr[i];
+        }
+        Arrays.sort(arr);
+        float mean = sum/n;
+        float median;
+        System.out.println(mean);
+        if(n%2==0)
+             median = (arr[n/2] + arr[n/2-1])/2;
+        else
+             median = arr[n/2];
+        System.out.println(median);
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i]==arr[j]){
+                    count[i]++;
+                    arr[j]=-1;
+                }
+            }
+        }
+        int max =0;
+        float mode = arr[max];
+        for(int i=0;i<n;i++){
+            if(count[i]>max){
+                max = count[i];
+                mode = arr[i];
+            }
+        }
+        System.out.println(mode);
+        
+        
+        
+    }
+}
